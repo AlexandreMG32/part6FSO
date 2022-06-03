@@ -3,19 +3,19 @@ import { useDispatch } from "react-redux";
 import {
   createNotification,
   removeNotification,
+  setNotification,
 } from "../reducers/notificationReducer";
+import anecdoteService from "../services/anecdotes";
+import { connect } from "react-redux";
 
 const AnecdoteForm = () => {
   const dispatch = useDispatch();
-  const addAnecdote = (event) => {
+  const addAnecdote = async (event) => {
     event.preventDefault();
     const anecdote = event.target.anecdote.value;
     event.target.anecdote.value = "";
     dispatch(createAnecdote(anecdote));
-    dispatch(createNotification(`${anecdote} anecdote created`));
-    setTimeout(() => {
-      dispatch(removeNotification());
-    }, 5000);
+    dispatch(setNotification(`${anecdote} anecdote created`, 5000));
   };
 
   return (
@@ -31,4 +31,5 @@ const AnecdoteForm = () => {
   );
 };
 
-export default AnecdoteForm;
+const ConnectedAnecdoteForm = connect()(AnecdoteForm);
+export default ConnectedAnecdoteForm;

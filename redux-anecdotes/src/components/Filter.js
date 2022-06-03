@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { changeFilter } from "../reducers/filterReducer";
+import { connect } from "react-redux";
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -18,4 +19,5 @@ const Filter = () => {
   );
 };
 
-export default Filter;
+const ConnectedFilter = connect()(Filter);
+export default ConnectedFilter;

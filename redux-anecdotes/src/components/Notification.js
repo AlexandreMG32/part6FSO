@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 
 const Notification = () => {
   const notification = useSelector((state) => state.notifications);
@@ -10,4 +11,5 @@ const Notification = () => {
   return notification ? <div style={style}>{notification}</div> : <div></div>;
 };
 
-export default Notification;
+const ConnectedNotifications = connect()(Notification);
+export default ConnectedNotifications;
